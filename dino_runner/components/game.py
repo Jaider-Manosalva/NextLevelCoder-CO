@@ -23,6 +23,7 @@ class Game:
         self.obstacle_manager = ObstacleManger()
         self.power_up_manager = PowerUpManager()
         self.points = 0
+        self.count_score = 0
         pygame.mixer.music.load("dino_runner/assets/Other/sound_background.mp3")
         pygame.mixer.music.play(-1)
 
@@ -35,6 +36,7 @@ class Game:
             self.events()
             self.update()
             self.draw()
+            self.count_score += 1
         #pygame.quit()
 
     def events(self):
@@ -55,7 +57,7 @@ class Game:
         self.screen.fill((255, 255, 255))
         self.draw_background()
         self.player.draw(self.screen)
-        
+        self.draw_score(self.screen,str(self.count_score),SCREEN_WIDTH // 2, 10)
         self.obstacle_manager.draw(self.screen)
         self.power_up_manager.draw(self.screen)
         pygame.display.update()
@@ -75,3 +77,11 @@ class Game:
             self.screen.blit(BG, (image_width + self.x_pos_bg, self.y_pos_bg))
             self.x_pos_bg = 0
         self.x_pos_bg -= self.game_speed
+    
+    def draw_score(self,screen,text,x,y):
+        BLACK = (0,0,0,0)
+        font = pygame.font.SysFont("Arial",30)
+        text_screen = font.render("Score: "+text, True, BLACK)
+        text_rect = text_screen.get_rect()
+        text_rect.midtop = (x,y)
+        screen.blit(text_screen,text_rect)
