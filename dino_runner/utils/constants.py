@@ -1,6 +1,9 @@
+from sunau import AUDIO_FILE_ENCODING_ALAW_8
 import pygame
 import os
 
+pygame.init()
+pygame.mixer.init()
 # Global Constants
 TITLE = "Chrome Dino Runner"
 SCREEN_HEIGHT = 600
@@ -68,6 +71,12 @@ HAMMER = pygame.image.load(os.path.join(IMG_DIR, 'Other/hammer.png'))
 BG = pygame.image.load(os.path.join(IMG_DIR, 'Other/Track.png'))
 
 HEART = pygame.image.load(os.path.join(IMG_DIR, 'Other/SmallHeart.png'))
+
+GAME_OVER = pygame.image.load(os.path.join(IMG_DIR,"Other/GameOver.png"))
+
+#SOUND_BACKGROUND = pygame.mixer.music.load("dino_runner/assets/Other/sound_background.mp3")
+SOUND_JUMP = pygame.mixer.Sound("dino_runner/assets/Other/jump.mp3")
+SOUND_POWER = pygame.mixer.Sound("dino_runner/assets/Other/power.mp3")
 
 DEFAULT_TYPE = "default"
 SHIELD_TYPE = "shield"

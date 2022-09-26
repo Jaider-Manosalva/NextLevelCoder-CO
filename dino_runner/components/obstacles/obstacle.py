@@ -2,6 +2,7 @@ from pygame.sprite import Sprite
 from dino_runner.utils.constants import(
     LARGE_CACTUS,
     SMALL_CACTUS,
+    BIRD,
     SCREEN_WIDTH
 )
 class Obstacle(Sprite):
@@ -14,7 +15,7 @@ class Obstacle(Sprite):
 
     def update(self,game_speed,obstacle):
         self.rect.x -= game_speed
-        if self.rect.x < 0:
+        if self.rect.x < 0: 
            obstacle.pop()
 
     def draw(self,screen):

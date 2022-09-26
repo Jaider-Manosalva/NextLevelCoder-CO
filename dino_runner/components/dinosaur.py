@@ -8,7 +8,10 @@ from dino_runner.utils.constants import(
     JUMPING_SHIELD,
     DUCKING_SHIELD,
     SHIELD_TYPE,
-    DEFAULT_TYPE
+    DEFAULT_TYPE,
+    SOUND_JUMP,
+    SOUND_POWER
+    
 ) 
 class Dinosaur(Sprite):
     
@@ -17,6 +20,8 @@ class Dinosaur(Sprite):
     Y_POS_DUCK = 340
     JUMP_VEL = 8.5
     Y_POS_JUMP = 130
+    pygame.init()
+    pygame.mixer.init()
 
     def __init__(self):
         self.run_img = {DEFAULT_TYPE: RUNNING, SHIELD_TYPE: RUNNING_SHIELD}
@@ -33,7 +38,9 @@ class Dinosaur(Sprite):
         self.dino_jump = False
         self.dino_duck = False
         self.setup_state_booleans()
-
+        self.soundjump = pygame.mixer.Sound(SOUND_JUMP)
+        self.soundpower = pygame.mixer.Sound(SOUND_POWER)
+        
     def setup_state_booleans(self):
         self.has_powerup = False
         self.shield = False
@@ -82,20 +89,22 @@ class Dinosaur(Sprite):
 
     def jump(self):
         self.image = self.jump_img[self.type]
+        self.soundjump.play()
         if self.dino_jump:
             self.dino_rect.y -= self.jump_vel * 4
             self.jump_vel -= 0.8
         if self.jump_vel < -self.JUMP_VEL:
             self.dino_rect.y = self.Y_POS
             self.dino_jump = False
-            self.jump_vel = self.JUMP_VEL
+            self.jump_vel = self.JUMP_VEL 
 
     def draw(self,screen):
         screen.blit(self.image,self.dino_rect)
 
     def check_invincibility(self, screen):
         if self.shield:
-            time_to_show = round((self.shield_time_up - pygame.time.get_ticks()) / 1000, 2)
+            self.soundpower.play()
+            time_to_show = round((self.shield_time_up - pygame.time.get_ticks()) / 2000, 2)
             if time_to_show >= 0:
                 if self.show_text:
                     fond = pygame.font.Font('freesansbold.ttf', 18)
