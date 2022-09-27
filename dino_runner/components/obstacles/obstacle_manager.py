@@ -13,11 +13,9 @@ class ObstacleManger:
 
     def __init__(self):
         self.obstacles = []
-        self.gameover = Game_Over()
 
     def update(self, game):
 
-        
         if len(self.obstacles) == 0:
             new_obstacle = Cactus(SMALL_CACTUS)
             self.obstacles.append(new_obstacle)
@@ -28,9 +26,10 @@ class ObstacleManger:
                 if game.player.shield:
                     self.obstacles.remove(obstacle)
                 else:
-                    pygame.time.delay(500)
+                    #pygame.time.delay(500)
                     game.playing = False
-                    break;  
+                    game.over = True
+                   # break;  
                 
     def draw(self,screen):
         for obstacle in self.obstacles:

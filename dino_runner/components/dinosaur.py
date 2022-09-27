@@ -11,7 +11,6 @@ from dino_runner.utils.constants import(
     DEFAULT_TYPE,
     SOUND_JUMP,
     SOUND_POWER
-    
 ) 
 class Dinosaur(Sprite):
     
@@ -89,7 +88,6 @@ class Dinosaur(Sprite):
 
     def jump(self):
         self.image = self.jump_img[self.type]
-        self.soundjump.play()
         if self.dino_jump:
             self.dino_rect.y -= self.jump_vel * 4
             self.jump_vel -= 0.8
@@ -97,7 +95,8 @@ class Dinosaur(Sprite):
             self.dino_rect.y = self.Y_POS
             self.dino_jump = False
             self.jump_vel = self.JUMP_VEL 
-
+        self.soundjump.play()
+        
     def draw(self,screen):
         screen.blit(self.image,self.dino_rect)
 

@@ -32,6 +32,7 @@ class Game:
         
         # Game loop: events - update - draw
         self.playing = True
+        self.over = False
         while self.playing:
             self.events()
             self.update()
@@ -46,7 +47,6 @@ class Game:
 
     def update(self):
         self.score()
-        
         user_input = pygame.key.get_pressed()
         self.player.update(user_input)
         self.obstacle_manager.update(self)
@@ -57,7 +57,7 @@ class Game:
         self.screen.fill((255, 255, 255))
         self.draw_background()
         self.player.draw(self.screen)
-        self.draw_score(self.screen,str(self.count_score),SCREEN_WIDTH // 2, 10)
+        self.draw_score(self.screen,str(self.count_score),SCREEN_WIDTH // 8, 10)
         self.obstacle_manager.draw(self.screen)
         self.power_up_manager.draw(self.screen)
         pygame.display.update()

@@ -75,8 +75,8 @@ HEART = pygame.image.load(os.path.join(IMG_DIR, 'Other/SmallHeart.png'))
 GAME_OVER = pygame.image.load(os.path.join(IMG_DIR,"Other/GameOver.png"))
 
 #SOUND_BACKGROUND = pygame.mixer.music.load("dino_runner/assets/Other/sound_background.mp3")
-SOUND_JUMP = pygame.mixer.Sound("dino_runner/assets/Other/jump.mp3")
-SOUND_POWER = pygame.mixer.Sound("dino_runner/assets/Other/power.mp3")
+SOUND_JUMP = pygame.mixer.Sound("dino_runner/assets/Other/jump1.wav")
+SOUND_POWER = pygame.mixer.Sound("dino_runner/assets/Other/power18.mp3")
 
 DEFAULT_TYPE = "default"
 SHIELD_TYPE = "shield"

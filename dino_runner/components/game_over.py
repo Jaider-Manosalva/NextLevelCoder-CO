@@ -15,6 +15,7 @@ class Game_Over():
     def update(self,user_input):
         if user_input[pygame.K_SPACE]:
            self.image.pop()
+           self.game.playing = True
 
     def draw(self):
         self.screen.fill((255, 255, 255))
